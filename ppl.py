@@ -105,7 +105,7 @@ def compute(
 
 if __name__ == "__main__":
     # text preparation
-    ppl_data_path = "./data/ppl/Corpus-1k.json"
+    ppl_data_path = "./data/ME-PPL/ME-PPL_50.json"
     ppl_input_texts = json.load(open(ppl_data_path, 'r', encoding='utf-8'))
     ppl_input_texts = [d["Text"] for d in ppl_input_texts]
     
