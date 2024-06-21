@@ -1,4 +1,4 @@
-datasets==1.18.3
+datasets==2.0.0
 einops==0.4.0
 evaluate==0.4.1
 fairscale==0.4.13
