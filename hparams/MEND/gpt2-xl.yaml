@@ -10,6 +10,7 @@ tokenizer_class: GPT2Tokenizer
 tokenizer_name: ./hugging_cache/gpt2-xl
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 inner_params:
 - transformer.h.45.mlp.c_proj.weight
 - transformer.h.45.mlp.c_fc.weight

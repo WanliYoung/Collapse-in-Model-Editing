@@ -10,6 +10,7 @@ tokenizer_class: AutoTokenizer
 tokenizer_name: THUDM/chatglm2-6b
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 inner_params:
 - transformer.encoder.layers.25.mlp.dense_h_to_4h.weight
 - transformer.encoder.layers.25.mlp.dense_4h_to_h.weight

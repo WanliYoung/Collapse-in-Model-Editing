@@ -23,5 +23,6 @@ mom2_n_samples: 100000
 mom2_dtype: "float32"
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 
 

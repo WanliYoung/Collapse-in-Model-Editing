@@ -7,6 +7,7 @@ model_class: Blip2OPT
 tokenizer_class: GPT2Tokenizer
 tokenizer_name: hugging_cache/opt-2.7b
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 inner_params:
 - opt_model.model.decoder.layers.29.fc1.weight
 - opt_model.model.decoder.layers.29.fc2.weight

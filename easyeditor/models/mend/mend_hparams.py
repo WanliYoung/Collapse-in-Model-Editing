@@ -76,6 +76,7 @@ class MENDHyperParams(HyperParams):
 
     model_parallel: bool = False
     ppl_sentence_num: int = 50
+    ppl_batch_size: int = 10
 
     @classmethod
     def from_hparams(cls, hparams_name_or_path: str):

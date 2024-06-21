@@ -10,6 +10,7 @@ tokenizer_class: AutoTokenizer
 tokenizer_name: ./hugging_cache/Mistral-7B-v0.1
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 inner_params:
   - model.layers.29.mlp.gate_proj.weight
   - model.layers.29.mlp.up_proj.weight

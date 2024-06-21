@@ -362,7 +362,7 @@ class BaseEditor:
                 })
                 
                 # calculate ppl
-                ppl_results = compute_ppl(predictions=ppl_input_texts, model=edited_model, tokenizer=self.ppl_tok, batch_size=16, add_start_token=False, device=self.hparams.device)
+                ppl_results = compute_ppl(predictions=ppl_input_texts, model=edited_model, tokenizer=self.ppl_tok, batch_size=self.hparams.ppl_batch_size, add_start_token=False, device=self.hparams.device)
                 all_metrics[i]["post"]['ppl'] = ppl_results["mean_perplexity"]
                 
                 # restore weights

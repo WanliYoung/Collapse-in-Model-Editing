@@ -18,3 +18,4 @@ ln_f_module: "transformer.ln_f"
 lm_head_module: "transformer.wte"
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10

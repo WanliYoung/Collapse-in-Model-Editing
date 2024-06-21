@@ -10,6 +10,7 @@ tokenizer_class: AutoTokenizer
 tokenizer_name: ./hugging_cache/qwen-7b
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 inner_params:
 - transformer.h.29.mlp.w1.weight
 - transformer.h.29.mlp.w2.weight

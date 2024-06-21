@@ -7,6 +7,7 @@ model_class: Blip2OPT
 tokenizer_class: LlamaTokenizer
 tokenizer_name: hugging_cache/Vicuna
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 inner_params:
 - llama_model.model.layers.29.mlp.down_proj.weight
 - llama_model.model.layers.29.mlp.up_proj.weight

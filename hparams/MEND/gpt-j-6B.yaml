@@ -10,6 +10,7 @@ tokenizer_class: AutoTokenizer
 tokenizer_name: ./hugging_cache/gpt-j-6B
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
 inner_params:
 - transformer.h.25.mlp.fc_in.weight
 - transformer.h.25.mlp.fc_out.weight

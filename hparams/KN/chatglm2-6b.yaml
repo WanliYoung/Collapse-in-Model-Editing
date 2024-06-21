@@ -12,3 +12,4 @@ adaptive_threshold: 0.2
 p: 0.4
 
 ppl_sentence_num: 50  # 1000, 10000
+ppl_batch_size: 10
