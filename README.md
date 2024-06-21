@@ -5,7 +5,7 @@ This repository hosts the code and data for the paper [🦋🌪️ The Butterfly
 
 #### Requirements:
 
-- **Environment**: `requirements.txt`
+- **Environment**: `requirements.txt` (Please use Python 3.9+ for this repository)
 - **Large Language Models to Edit**: Download the LLMs you want to edit from [Hugging Face](https://huggingface.co/) and put them in `hugging_cache/`
 - **Stats for ROME and MEMIT**: If you want to apply editing algorithms ROME and MEMIT, you can download the stats files required for them from [stats for gpt2 and gptj](https://rome.baulab.info/data/stats/) and [stats for llama2](https://drive.google.com/drive/folders/1IGt7NNV-OxXqIljjr02_k0dDY50Z5N_E), and put the `wikipedia_stats` directory into corresponding local directory, e.g. , `data/stats/._hugging_cache_gpt2-xl/wikipedia_stats`
 - **Complete Datasets**: 
