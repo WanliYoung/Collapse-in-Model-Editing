@@ -1,7 +1,6 @@
 # Collapse in Model Editing
-This repository hosts the code and data for the paper [🦋🌪️ The Butterfly Effect of Model Editing: Few Edits Can Trigger Large Language Models Collapse](https://arxiv.org/abs/2402.09656). 
 
-
+This repository hosts the code and data for the following two papers: [🦋🌪️ The Butterfly Effect of Model Editing: Few Edits Can Trigger Large Language Models Collapse](https://aclanthology.org/2024.findings-acl.322/) (ACL 2024 Findings) and [The Fall of ROME: Understanding the Collapse of LLMs in Model Editing](https://arxiv.org/abs/2406.11263) (EMNLP 2024 Findings).
 
 #### Requirements:
 
@@ -11,6 +10,10 @@ This repository hosts the code and data for the paper [🦋🌪️ The Butterfly
 - **Complete Datasets**: 
   - You can get the ME-PPL, HardCF, and HardEdit datasets from [here](https://drive.google.com/drive/folders/1awv48dbYW5X2t51ebB8yE_4VPE_j8-qs?usp=drive_link) and put them in `data/`
   - You can download the complete ZsRE and COUNTERFACT datasets from [here](https://rome.baulab.info/data/dsets/) and put them in `data/`
+
+
+
+## 🦋🌪 The Butterfly Effect of Model Editing: Few Edits Can Trigger Large Language Models Collapse
 
 
 #### Training-required Method MEND:
@@ -34,3 +37,8 @@ If you want to observe the editing effects of a single case, you can modify and 
 #### Evaluation of Downstream Tasks for LLMs
 
 If you want to evaluate the downstream task capabilities for LLMs, please refer to [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness).
+
+
+
+## The Fall of ROME: Understanding the Collapse of LLMs in Model Editing
+
