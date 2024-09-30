@@ -8,12 +8,15 @@ This repository hosts the code and data for the following two papers: [🦋🌪�
 - **Large Language Models to Edit**: Download the LLMs you want to edit from [Hugging Face](https://huggingface.co/) and put them in `hugging_cache/`
 - **Stats for ROME and MEMIT**: If you want to apply editing algorithms ROME and MEMIT, you can download the stats files required for them from [stats for gpt2 and gptj](https://rome.baulab.info/data/stats/) and [stats for llama2](https://drive.google.com/drive/folders/1IGt7NNV-OxXqIljjr02_k0dDY50Z5N_E), and put the `wikipedia_stats` directory into corresponding local directory, e.g. , `data/stats/._hugging_cache_gpt2-xl/wikipedia_stats`
 - **Complete Datasets**: 
-  - You can get the ME-PPL, HardCF, and HardEdit datasets from [here](https://drive.google.com/drive/folders/1awv48dbYW5X2t51ebB8yE_4VPE_j8-qs?usp=drive_link) and put them in `data/`
-  - You can download the complete ZsRE and COUNTERFACT datasets from [here](https://rome.baulab.info/data/dsets/) and put them in `data/`
+  - You can download the complete `ZsRE` and `COUNTERFACT` datasets from [here](https://rome.baulab.info/data/dsets/) and put them in `data/`
+  - For the ACL paper, you can get the `ME-PPL`, `HardCF`, and `HardEdit` datasets from [here](https://drive.google.com/drive/folders/1-L2TzbaWVmduJaFzfp49XzdVp-3LuQ1i) and put them in `data/`
+  - For the EMNLP paper, you can get the examined subset `collapse cases` and `normal cases` from [here](https://drive.google.com/drive/folders/1pTbtdrzXyZKjM1oAOIUNOB_ePB6FhtjN) and put them in `data/`
 
 
 
 ## 🦋🌪 The Butterfly Effect of Model Editing: Few Edits Can Trigger Large Language Models Collapse
+
+**TL;DR:** This paper uncovers the potential of model editing to trigger LLMs collapse and proposes using perplexity as a surrogate metric to monitor model alterations.
 
 
 #### Training-required Method MEND:
@@ -41,4 +44,10 @@ If you want to evaluate the downstream task capabilities for LLMs, please refer 
 
 
 ## The Fall of ROME: Understanding the Collapse of LLMs in Model Editing
+
+**TL;DR:** This paper reveals the root causes behind the model collapse triggered by a single edit of ROME and proposes a straightforward solution to prevent collapse and achieve remarkable editing performance.
+
+#### 
+
+
 
