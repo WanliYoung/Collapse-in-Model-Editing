@@ -55,7 +55,7 @@ Our code will report **the norm of the numerator** (a matrix) and **the absolute
 
 #### Exp 2: Performance of Consistent-ROME
 
-To verify if this inconsistency of keys is responsible for the collapse, we substitute all $\bm{k}^{u}$ with $\overline{k}$ in the the implementation of ROME. The aligned implementation is referred to as **Consistent-ROME, C-ROME** for short.
+To verify if this inconsistency of keys is responsible for the collapse, we substitute all $k^{u}$ with $\overline{k}$ in the the implementation of ROME. The aligned implementation is referred to as **Consistent-ROME, C-ROME** for short.
 
 **To employ Consistent-ROME** in place of ROME for editing, set the hyperparameter `if_c_rome` in `./hparams/ROME/xxx.yaml` to `true`. By default, it is set to `false` to utilize ROME.
 
