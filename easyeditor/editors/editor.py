@@ -23,6 +23,7 @@ from ..util.globals import *
 from .singleton_editor import SingletonEditor
 from .batch_editor import BatchEditor
 from ..evaluate import compute_edit_quality, compute_icl_edit_quality
+from ..models.rome.rome_main import get_context_templates
 from ..util import nethook
 from ..util.hparams import HyperParams
 from ..util.alg_dict import *
@@ -354,6 +355,12 @@ class BaseEditor:
                 LOG.info(f"Execution {i} editing took {exec_time}")
 
                 start = time()
+
+                if self.hparams.if_prefix:
+                    context_templates = get_context_templates(self.model, self.tok, self.hparams.context_template_length_params)[1:]
+                    random_prefix = random.choice(context_templates)
+                    request['prompt'] = random_prefix.format(request["prompt"])
+
                 all_metrics[i].update({
                     'case_id': i,
                     "requested_rewrite": request,

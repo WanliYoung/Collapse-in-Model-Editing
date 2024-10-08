@@ -152,6 +152,12 @@ def get_reprs_at_idxs(
             next(model.parameters()).device
         )
 
+        ''' 
+        # Uncomment the following code to obtain the representation of the first token in the input.
+        if len(batch_contexts) == 1:
+            batch_idxs = [[0]]
+        '''
+
         with torch.no_grad():
             with nethook.Trace(
                 module=model,

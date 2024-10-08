@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from typing import Dict, List
+import numpy as np
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -110,6 +111,18 @@ def compute_u(
 
     # Apply inverse second moment adjustment
     u = cur_repr
+
+    if hparams.save_keys:  # save key tensor
+        key_cpu = u.clone().detach().cpu()
+        numpy_key = key_cpu.numpy()
+        prefix = 'key'
+        directory = f"{hparams.save_keys_path}/keys_with_prefix/"
+        files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f)) and f.startswith(prefix) and f.endswith('.npy')]
+        numbers = [int(f.replace(prefix, '').replace('.npy', '')) for f in files]
+        next_number = 1 if not numbers else max(numbers) + 1
+        next_filename = f'{directory}{prefix}{next_number}.npy'
+        np.save(next_filename, numpy_key)
+
     if hparams.mom2_adjustment:
         u = get_inv_cov(
             model,
@@ -121,5 +134,16 @@ def compute_u(
             hparams=hparams,
         ) @ u.unsqueeze(1)
         u = u.squeeze()
+
+    if hparams.save_keys:  # save key tensor
+        key_cpu = u.clone().detach().cpu()
+        numpy_key = key_cpu.numpy()
+        prefix = 'key'
+        directory = f"{hparams.save_keys_path}/C_keys_with_prefix/"
+        files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f)) and f.startswith(prefix) and f.endswith('.npy')]
+        numbers = [int(f.replace(prefix, '').replace('.npy', '')) for f in files]
+        next_number = 1 if not numbers else max(numbers) + 1
+        next_filename = f'{directory}{prefix}{next_number}.npy'
+        np.save(next_filename, numpy_key)
 
     return u / u.norm()

@@ -1,6 +1,7 @@
 from typing import Dict, List, Tuple
 
 import numpy as np
+import os
 import torch
 from matplotlib.style import context
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -178,6 +179,7 @@ def compute_v(
 
     # Retrieve cur_input, the current input to the 2nd MLP layer, and
     # cur_output, the original output of the 2nd MLP layer.
+    hparams_context_templates = context_templates if hparams.if_c_rome else None
     cur_input, cur_output = get_module_input_output_at_word(
         model,
         tok,
@@ -186,7 +188,19 @@ def compute_v(
         word=request["subject"],
         module_template=hparams.rewrite_module_tmp,
         fact_token_strategy=hparams.fact_token,
+        context_templates=hparams_context_templates,
     )
+
+    if hparams.save_keys:  # save key vector
+        key_cpu = cur_input.clone().detach().cpu()
+        numpy_key = key_cpu.numpy()
+        prefix = 'key'
+        directory = f"{hparams.save_keys_path}/keys_without_prefix/"
+        files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f)) and f.startswith(prefix) and f.endswith('.npy')]
+        numbers = [int(f.replace(prefix, '').replace('.npy', '')) for f in files]
+        next_number = 1 if not numbers else max(numbers) + 1
+        next_filename = f'{directory}{prefix}{next_number}.npy'
+        np.save(next_filename, numpy_key)
 
     # Solving the linear system to compute the right vector
     right_vector = (target - cur_output) / torch.dot(cur_input, left_vector)
@@ -194,8 +208,10 @@ def compute_v(
     print(
         f"Change in target norm: {target_init.norm().item()} to {target.norm().item()} => {(target.norm() - target_init.norm()).item()}"
     )
-    print(f"Division Factor: {torch.dot(cur_input, left_vector).item()}")
     print(f"Right vector norm: {right_vector.norm()}")
+    numerator = left_vector.unsqueeze(1) @ (target - cur_output).unsqueeze(0)
+    print(f"Norm of Numerator (Matrix): {numerator.norm().item()}")
+    print(f"Absolute value of Denominator (Scalar): {abs(torch.dot(cur_input, left_vector).item())}")
 
     return right_vector
 
@@ -208,6 +224,7 @@ def get_module_input_output_at_word(
     word: str,
     module_template: str,
     fact_token_strategy: str,
+    context_templates: List[str],
 ) -> Tuple[torch.Tensor]:
     """
     Retrieves detached representations for a word at the input and
@@ -222,13 +239,24 @@ def get_module_input_output_at_word(
     )
     if "subject_" in fact_token_strategy and fact_token_strategy.index("subject_") == 0:
         subtoken = fact_token_strategy[len("subject_") :]
-        l_input, l_output = repr_tools.get_reprs_at_word_tokens(
-            track="both",
-            subtoken=subtoken,
-            context_templates=[context_template],
-            words=[word],
-            **word_repr_args,
-        )
+        if context_templates:  # Consistent-ROME
+            l_input, l_output = repr_tools.get_reprs_at_word_tokens(
+                track="both",
+                subtoken=subtoken,
+                context_templates=[
+                    templ.format(context_template) for templ in context_templates
+                ],
+                words=[word for _ in range(len(context_templates))],
+                **word_repr_args,
+            ) 
+        else:  # ROME
+            l_input, l_output = repr_tools.get_reprs_at_word_tokens(
+                track="both",
+                subtoken=subtoken,
+                context_templates=[context_template],
+                words=[word],
+                **word_repr_args,
+            )
     elif fact_token_strategy == "last":
         l_input, l_output = repr_tools.get_reprs_at_idxs(
             track="both",
@@ -239,7 +267,10 @@ def get_module_input_output_at_word(
     else:
         raise ValueError(f"fact_token={fact_token_strategy} not recognized")
 
-    l_input, l_output = l_input[0], l_output[0]
+    if context_templates:
+        l_input, l_output = l_input.mean(0), l_output.mean(0)
+    else:
+        l_input, l_output = l_input[0], l_output[0]
     return l_input.detach(), l_output.detach()
 
 

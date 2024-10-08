@@ -24,6 +24,10 @@ mom2_dtype: "float32"
 model_parallel: false
 ppl_sentence_num: 50  # 1000, 10000
 ppl_batch_size: 10
+if_c_rome: false
+save_keys: false
+save_keys_path: "./save_keys_path"
+if_prefix: false
 
 #alg_name: "ROME"
 #model_name: "./hugging_cache/llama-7b"

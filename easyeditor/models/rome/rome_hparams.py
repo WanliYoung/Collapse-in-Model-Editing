@@ -40,6 +40,10 @@ class ROMEHyperParams(HyperParams):
     model_parallel: bool = False
     ppl_sentence_num: int = 50
     ppl_batch_size: int = 10
+    if_c_rome: bool = False
+    save_keys: bool = False
+    save_keys_path: str = "./save_keys_path"
+    if_prefix: bool = False
 
     @classmethod
     def from_hparams(cls, hparams_name_or_path: str):
