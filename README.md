@@ -109,14 +109,18 @@ If you have any further questions, please feel free to contact us. And if you fi
     pages = "5419--5437",
 }
 
-@misc{yang2024understandingcollapsellmsmodel,
-      title={Understanding the Collapse of LLMs in Model Editing}, 
-      author={Wanli Yang and Fei Sun and Jiajun Tan and Xinyu Ma and Du Su and Dawei Yin and Huawei Shen},
-      year={2024},
-      eprint={2406.11263},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2406.11263}, 
+@inproceedings{yang-etal-2024-fall,
+    title = "The Fall of {ROME}: Understanding the Collapse of {LLM}s in Model Editing",
+    author = "Yang, Wanli  and  Sun, Fei  and  Tan, Jiajun  and  Ma, Xinyu  and  Su, Du  and  Yin, Dawei  and  Shen, Huawei",
+    editor = "Al-Onaizan, Yaser  and  Bansal, Mohit  and  Chen, Yun-Nung",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2024",
+    month = nov,
+    year = "2024",
+    address = "Miami, Florida, USA",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-emnlp.236",
+    doi = "10.18653/v1/2024.findings-emnlp.236",
+    pages = "4079--4087",
 }
 
 ```
